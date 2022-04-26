@@ -1,22 +1,23 @@
 import React, { useRef, useState, useContext } from "react";
-import { isAuthContext } from "../helpers/Context";
+import { isAuthContext, loggedInUserDataContext } from "../helpers/Context";
 import {
   signInWithEmailAndPassword,
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../firebaseConfig";
 import { Link } from "react-router-dom";
-import googleLogo from "../../svg/googleLogo.svg";
+import googleLogo from "../svg/googleLogo.svg";
 
 function LoginForm() {
   const provider = new GoogleAuthProvider();
+
   const { isAuth, setIsAuth } = useContext(isAuthContext);
+  const { loggedInUser, setLoggedInUser } = useContext(loggedInUserDataContext);
 
   const emailRef = useRef("");
   const passwordRef = useRef("");
-  const [loggedInUser, setLoggedInUser] = useState(null);
   const [loginError, setLoginError] = useState(null);
 
   const handleLogin = async (e) => {
@@ -41,8 +42,9 @@ function LoginForm() {
       const result = await signInWithPopup(auth, provider);
       setLoggedInUser(result);
       setIsAuth(true);
+      console.log(loggedInUser);
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 
@@ -58,7 +60,7 @@ function LoginForm() {
     <>
       <h1 className="text-center">Login</h1>
       <h5 className="text-center bg-info font-size-sm">
-        Logged in as: {loggedInUser?.user.email}
+        Logged in as: {loggedInUser ? loggedInUser.user.email : "not signed in"}
       </h5>
       {loginError ? (
         <p className="bg-danger text-white w-100">{loginError}</p>

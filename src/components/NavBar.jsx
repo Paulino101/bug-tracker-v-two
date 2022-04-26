@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { isAuthContext } from "../helpers/Context";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 function NavBar() {
+  const { isAuth, setIsAuth } = useContext(isAuthContext);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      setIsAuth(false);
+      alert("you have been signed out");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -27,17 +41,18 @@ function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/dashboard" className="nav-link">
-                Dashboard
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">Pricing</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
+              {isAuth ? (
+                <Link to="/profile" className="nav-link">
+                  Profile
+                </Link>
+              ) : null}
             </li>
           </ul>
+          {isAuth ? (
+            <button onClick={handleSignOut} className="btn btn-primary">
+              Sign Out
+            </button>
+          ) : null}
         </div>
       </div>
     </nav>

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./../../firebaseConfig";
+import { auth } from "../firebaseConfig";
 
 import { Link } from "react-router-dom";
 
