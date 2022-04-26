@@ -1,3 +1,5 @@
+import React, { useRef, useState, useContext } from "react";
+import { isAuthContext } from "../helpers/Context";
 import {
   signInWithEmailAndPassword,
   signOut,
@@ -5,13 +7,12 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
-import React, { useRef, useState } from "react";
-import googleLogo from "../../svg/googleLogo.svg";
-
 import { Link } from "react-router-dom";
+import googleLogo from "../../svg/googleLogo.svg";
 
 function LoginForm() {
   const provider = new GoogleAuthProvider();
+  const { isAuth, setIsAuth } = useContext(isAuthContext);
 
   const emailRef = useRef("");
   const passwordRef = useRef("");
@@ -27,7 +28,7 @@ function LoginForm() {
         passwordRef.current.value
       );
       setLoggedInUser(user);
-      console.log(user);
+      setIsAuth(true);
     } catch (error) {
       setLoginError(error.message);
       console.log(error.message);
@@ -39,6 +40,7 @@ function LoginForm() {
       e.preventDefault();
       const result = await signInWithPopup(auth, provider);
       setLoggedInUser(result);
+      setIsAuth(true);
     } catch (error) {
       alert(error.message);
     }
@@ -47,6 +49,7 @@ function LoginForm() {
   const handleSignOut = async (e) => {
     try {
       await signOut(auth);
+      setIsAuth(false);
     } catch (error) {
       console.log(error.message);
     }

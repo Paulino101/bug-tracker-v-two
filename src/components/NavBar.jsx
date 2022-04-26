@@ -27,7 +27,9 @@ function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link">Features</a>
+              <Link to="/dashboard" className="nav-link">
+                Dashboard
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link">Pricing</a>
