@@ -36,14 +36,23 @@ function NavBar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/" className="nav-link active" aria-current="page">
-                Log In
-              </Link>
+              {!isAuth ? (
+                <Link to="/" className="nav-link active" aria-current="page">
+                  Log In
+                </Link>
+              ) : null}
             </li>
             <li className="nav-item">
               {isAuth ? (
                 <Link to="/profile" className="nav-link">
                   Profile
+                </Link>
+              ) : null}
+            </li>
+            <li className="nav-item">
+              {isAuth ? (
+                <Link to="/dashboard" className="nav-link">
+                  Dashboard
                 </Link>
               ) : null}
             </li>

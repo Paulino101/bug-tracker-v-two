@@ -106,12 +106,6 @@ function LoginForm() {
           Sign In With Google
         </button>
 
-        {loggedInUser ? (
-          <button onClick={handleSignOut} className="w-100 btn btn-secondary">
-            Sign Out
-          </button>
-        ) : null}
-
         <aside>
           <Link to="/register">Don't have an account?</Link>
         </aside>
