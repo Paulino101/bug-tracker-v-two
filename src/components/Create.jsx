@@ -1,39 +1,48 @@
-import React, {useRef} from "react";
+import React, { useRef, useState } from "react";
+import { addDoc } from "firebase/firestore";
 
-import Sidebar from "./Sidebar";
+function Create({ collectionRef }) {
+  const [submit, setSubmit] = useState(false);
 
-function Create() {
-  const titleRef = useRef('')
-  const dateRef = useRef('')
-  const descRef = useRef('')
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-    console.log('create')
-    console.log(titleRef, dateRef, descRef)
+  const titleRef = useRef("");
+  const dateRef = useRef("");
+  const descRef = useRef("");
 
-  }
+  const handleCreateIssue = async (e) => {
+    e.preventDefault();
+    await addDoc(collectionRef, {
+      bugName: titleRef.current.value,
+      date: dateRef.current.value,
+      description: descRef.current.value,
+      fixed: false,
+    });
+    setSubmit(!submit);
+  };
   return (
     <>
-      <Sidebar />
-      <h1>Create New Issue</h1>
+      <h1 className="mt-7">Create New Issue</h1>
       <form className="m-2">
-      <div className="mb-3">
-        <label className="form-label">Title</label>
-      <input ref={titleRef} type="text" className="form-control"/>
-      </div>
-      <div className="mb-3">
-      <label className="form-label">Date</label>
-      <input ref={dateRef} type="text" className="form-control" placeholder="XX/XX/XXXX"/>
-      </div>
-      <div className="mb-3"> 
-      <label className="form-label">Description</label>
-      <input ref={descRef} type="text" className="form-control" />
-      </div>
-      <button className="btn btn-primary" onClick={handleSubmit}>submit</button>
-     
-      {/* eventually add pill type status on each issue depending on wether they have been solved or not */}
+        <div className="mb-3">
+          <label className="form-label">Title</label>
+          <input ref={titleRef} type="text" className="form-control" />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Date</label>
+          <input
+            ref={dateRef}
+            type="text"
+            className="form-control"
+            placeholder="XX/XX/XXXX"
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Description</label>
+          <input ref={descRef} type="text" className="form-control" />
+        </div>
+        <button className="btn btn-primary" onClick={handleCreateIssue}>
+          create
+        </button>
       </form>
-      
     </>
   );
 }

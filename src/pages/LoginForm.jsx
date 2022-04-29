@@ -58,7 +58,7 @@ function LoginForm() {
   };
   return (
     <>
-      <h1 className="text-center">Login</h1>
+      <h1 className="text-center mt-7">Login</h1>
       <h5 className="text-center bg-info font-size-sm">
         Logged in as: {loggedInUser ? loggedInUser.user.email : "not signed in"}
       </h5>

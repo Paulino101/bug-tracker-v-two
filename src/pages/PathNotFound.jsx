@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../css/pathNotFoundStyles.css";
+import { isAuthContext } from "./../helpers/Context";
 
 function PathNotFound() {
+  const { isAuth } = useContext(isAuthContext);
   return (
     <section className="error-area error-one">
       <div className="container">
@@ -12,9 +14,15 @@ function PathNotFound() {
               <span className="error-404">404</span>
               <h5 className="sub-title">Page Not Found</h5>
               <p className="text">What are you looking for?</p>
-              <Link className="text-decoration-none" to="/">
-                How about you login first
-              </Link>
+              {isAuth ? (
+                <Link className="text-decoration-none" to="/profile">
+                  Head back to your profile
+                </Link>
+              ) : (
+                <Link className="text-decoration-none" to="/">
+                  How about you login first
+                </Link>
+              )}
               <div className="error-form"></div>
             </div>
           </div>
