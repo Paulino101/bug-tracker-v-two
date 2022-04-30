@@ -2,16 +2,16 @@ import React, { useRef, useState, useContext } from "react";
 import { isAuthContext, loggedInUserDataContext } from "../helpers/Context";
 import {
   signInWithEmailAndPassword,
-  signOut,
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import googleLogo from "../svg/googleLogo.svg";
 
 function LoginForm() {
   const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
   const { isAuth, setIsAuth } = useContext(isAuthContext);
   const { loggedInUser, setLoggedInUser } = useContext(loggedInUserDataContext);
@@ -19,6 +19,10 @@ function LoginForm() {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [loginError, setLoginError] = useState(null);
+
+  const handleRedirect = () => {
+    navigate("/issues");
+  };
 
   const handleLogin = async (e) => {
     try {
@@ -30,6 +34,7 @@ function LoginForm() {
       );
       setLoggedInUser(user);
       setIsAuth(true);
+      handleRedirect();
     } catch (error) {
       setLoginError(error.message);
       console.log(error.message);
@@ -42,16 +47,8 @@ function LoginForm() {
       const result = await signInWithPopup(auth, provider);
       setLoggedInUser(result);
       setIsAuth(true);
+      handleRedirect();
       console.log(loggedInUser);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const handleSignOut = async (e) => {
-    try {
-      await signOut(auth);
-      setIsAuth(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -59,9 +56,7 @@ function LoginForm() {
   return (
     <>
       <h1 className="text-center mt-7">Login</h1>
-      <h5 className="text-center bg-info font-size-sm">
-        Logged in as: {loggedInUser ? loggedInUser.user.email : "not signed in"}
-      </h5>
+
       {loginError ? (
         <p className="bg-danger text-white w-100">{loginError}</p>
       ) : null}

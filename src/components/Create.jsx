@@ -17,6 +17,7 @@ function Create({ collectionRef }) {
       fixed: false,
     });
     setSubmit(!submit);
+    alert("Issue Created");
   };
   return (
     <>
@@ -24,7 +25,12 @@ function Create({ collectionRef }) {
       <form className="m-2">
         <div className="mb-3">
           <label className="form-label">Title</label>
-          <input ref={titleRef} type="text" className="form-control" />
+          <input
+            ref={titleRef}
+            type="text"
+            className="form-control"
+            placeholder="16 character limit"
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Date</label>

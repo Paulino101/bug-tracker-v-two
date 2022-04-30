@@ -4,8 +4,8 @@ import { isAuthContext } from "../helpers/Context";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import addSvg from "../svg/folder-add-svgrepo-com.svg";
-import deleteSvg from "../svg/folder-remove-svgrepo-com.svg";
 import warningSvg from "../svg/folder-warning-svgrepo-com.svg";
+import userProfile from "../svg/user-svgrepo-com.svg";
 
 function NavBar() {
   const { isAuth, setIsAuth } = useContext(isAuthContext);
@@ -21,12 +21,9 @@ function NavBar() {
   };
   return (
     <>
-      {/*  */}
       <nav class="navbar navbar-light bg-light fixed-top ">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            Offcanvas navbar
-          </a>
+          <a class="navbar-brand">Bugtracker</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -66,45 +63,44 @@ function NavBar() {
                     </Link>
                   ) : null}
                 </li>
-                <li className="nav-item">
-                  {isAuth ? (
-                    <Link to="/profile" className="nav-link">
-                      Profile
-                    </Link>
-                  ) : null}
-                </li>
               </ul>
               {isAuth ? (
                 <div className="list-group">
                   <Link
+                    to="/profile"
+                    className="list-group-item list-group-item-action d-flex justify-content-between"
+                  >
+                    Profile
+                    <img src={userProfile} className="ms-3" alt="user icon" />
+                  </Link>
+                  <Link
                     to="/create"
-                    class="list-group-item list-group-item-action "
+                    className="list-group-item list-group-item-action  d-flex justify-content-between"
                     aria-current="true"
                   >
-                    create an issue
-                    <img src={addSvg} className="ms-3" />
+                    Create New Issue
+                    <img src={addSvg} className="ms-3" alt="folder add icon" />
                   </Link>
                   <Link
                     to="/issues"
-                    class="list-group-item list-group-item-action "
+                    className="list-group-item list-group-item-action  d-flex justify-content-between"
                     aria-current="true"
                   >
-                    see issues
-                    <img src={warningSvg} className="ms-3" />
-                  </Link>
-                  <Link
-                    to="/delete"
-                    class="list-group-item list-group-item-action "
-                    aria-current="true"
-                  >
-                    delete an issue
-                    <img src={deleteSvg} className="ms-3" />
+                    See All Issues
+                    <img
+                      src={warningSvg}
+                      className="ms-3"
+                      alt="folder warning icon"
+                    />
                   </Link>
                 </div>
               ) : null}
               <form class="d-flex">
                 {isAuth ? (
-                  <button onClick={handleSignOut} className="btn btn-primary">
+                  <button
+                    onClick={handleSignOut}
+                    className="btn btn-primary d-flex justify-content-center w-100 mt-3"
+                  >
                     Sign Out
                   </button>
                 ) : null}

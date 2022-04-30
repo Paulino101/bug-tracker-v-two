@@ -4,54 +4,59 @@ import { db } from "../firebaseConfig";
 import "./styles.css";
 
 function Read({ data }) {
-  const [testr, setTestR] = useState(0);
+  const [count, setCount] = useState(data.length);
 
-  const refreshCreate = () => {
-    setTestR(data.length);
-  };
   const updateFixed = async (id, fixed) => {
     const boolDoc = doc(db, "bugs", id);
     const newBool = { fixed: true };
     await updateDoc(boolDoc, newBool);
+    setCount(count - 1);
+    console.log("updated", id);
   };
 
   const deleteIssue = async (id) => {
     const boolDoc = doc(db, "bugs", id);
     await deleteDoc(boolDoc);
+    setCount(count - 1);
+    console.log("deleted");
   };
   return (
     <div className="mt-7">
-      <h1 className="text-center">Issues</h1>
-      <button onClick={refreshCreate} className="btn btn-outline-success">
-        refresh
-      </button>
+      <h1 className="text-center">Issues : {count}</h1>
+
       {data.map((d) => (
         <div key={d.id} className="m-3 border rounded p-3">
-          <h5 className="text-capitalize fs-6">
-            {d.bugName}
+          <h5 className="text-capitalize fs-6 d-flex justify-content-between w-100">
+            <p className="w-75">{d.bugName}</p>
             {d.fixed ? (
-              <span class="badge bg-success ms-2">Solved</span>
+              <span className={`badge ms-2 bg-success h-100 w-25`}>Solved</span>
             ) : (
-              <span class="badge bg-danger ms-2">Issue</span>
+              <span className={`badge ms-2 bg-danger h-100 w-25`}>Issue</span>
             )}
           </h5>
 
           <aside>{d.date}</aside>
           <p>{d.description}</p>
           {!d.fixed ? (
-            <button
-              onClick={updateFixed(d.id, d.fixed)}
+            <div className="d-flex justify-content-end"><button
+              onClick={() => {
+                updateFixed(d.id, d.fixed);
+              }}
               className="btn btn-outline-success"
             >
               mark as fixed
-            </button>
+            </button></div>
           ) : (
-            <button
-              onClick={deleteIssue(d.id)}
-              className="btn btn-outline-danger"
-            >
-              delete this issue
-            </button>
+            <div className="d-flex justify-content-end">
+              <button
+                onClick={() => {
+                  deleteIssue(d.id);
+                }}
+                className="btn btn-outline-danger"
+              >
+                delete this issue
+              </button>
+            </div>
           )}
         </div>
       ))}
