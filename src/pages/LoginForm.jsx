@@ -60,7 +60,7 @@ function LoginForm() {
       {loginError ? (
         <p className="bg-danger text-white w-100">{loginError}</p>
       ) : null}
-      <form className="m-4 mt-2">
+      <form className="m-4 mt-2 m-md-5 mt-md-1 m-xl-lr">
         <div className="mb-3">
           <label htmlFor="exampleInputEmail2" className="form-label">
             Email address

@@ -1,3 +1,22 @@
 .mt-7 {
   margin-top: 5rem !important;
 }
+
+/* medium breakpoint media queries */
+@media (min-width: 768px) {
+  .w-md-15 {
+    width: 15% !important;
+  }
+  .w-md-45 {
+    width: 45% !important;
+  }
+}
+/* xl media queries */
+@media (min-width: 1200px) {
+  .w-xl-30 {
+    width: 30% !important;
+  }
+  .m-xl-lr {
+    margin: 0 10rem !important;
+  }
+}

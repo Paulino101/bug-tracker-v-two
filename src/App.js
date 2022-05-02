@@ -34,7 +34,7 @@ function App() {
         value={{ loggedInUser, setLoggedInUser }}
       >
         <Router>
-          <NavBar />
+          {isAuth ? <NavBar /> : null}
           <Routes>
             <Route path="/register" exact element={<RegisterForm />} />
             <Route path="/" exact element={<LoginForm />} />

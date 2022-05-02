@@ -23,8 +23,8 @@ function RegisterForm() {
   };
   return (
     <>
-      <h1 className="mt-7">Register Form</h1>
-      <form className="m-4 mt-2">
+      <h1 className="mt-7 text-center">Register Form</h1>
+      <form className="m-4 mt-2 m-md-5 mt-md-1">
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address

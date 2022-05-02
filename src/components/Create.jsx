@@ -21,8 +21,8 @@ function Create({ collectionRef }) {
   };
   return (
     <>
-      <h1 className="mt-7">Create New Issue</h1>
-      <form className="m-2">
+      <h1 className="mt-7 text-center">Create New Issue</h1>
+      <form className="m-2 m-md-5 m-xl-lr">
         <div className="mb-3">
           <label className="form-label">Title</label>
           <input
@@ -45,7 +45,10 @@ function Create({ collectionRef }) {
           <label className="form-label">Description</label>
           <input ref={descRef} type="text" className="form-control" />
         </div>
-        <button className="btn btn-primary" onClick={handleCreateIssue}>
+        <button
+          className="btn btn-primary text-capitalize"
+          onClick={handleCreateIssue}
+        >
           create
         </button>
       </form>

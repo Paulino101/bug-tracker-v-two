@@ -10,11 +10,13 @@ function Profile() {
       <img
         src={backUpAvatar}
         alt="profile avatar"
-        className="rounded-circle img-fluid "
+        className="rounded-circle img-fluid w-md-15"
       />
-      <h1>{loggedInUser.user.displayName}</h1>
-      <h2>{loggedInUser.user.email}</h2>
-      <aside>eventually add stats here?</aside>
+      <div>
+        <h1>{loggedInUser.user.displayName}</h1>
+        <h2>{loggedInUser.user.email}</h2>
+        <aside>eventually add stats here?</aside>
+      </div>
     </div>
   );
 }

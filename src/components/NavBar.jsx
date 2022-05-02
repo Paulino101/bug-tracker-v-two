@@ -21,7 +21,7 @@ function NavBar() {
   };
   return (
     <>
-      <nav class="navbar navbar-light bg-light fixed-top ">
+      <nav class="navbar navbar-light bg-light fixed-top border-bottom border-dark">
         <div class="container-fluid">
           <a class="navbar-brand">Bugtracker</a>
           <button
@@ -41,7 +41,7 @@ function NavBar() {
           >
             <div class="offcanvas-header">
               <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                Offcanvas
+                Menu
               </h5>
               <button
                 type="button"
