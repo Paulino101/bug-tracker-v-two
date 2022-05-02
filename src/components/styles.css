@@ -1,7 +1,9 @@
 .mt-7 {
   margin-top: 5rem !important;
 }
-
+.pb-100 {
+  padding-bottom: 100% !important;
+}
 /* medium breakpoint media queries */
 @media (min-width: 768px) {
   .w-md-15 {

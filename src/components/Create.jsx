@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { addDoc } from "firebase/firestore";
 
-function Create({ collectionRef }) {
+function Create({ collectionRef, getDbData }) {
   const [submit, setSubmit] = useState(false);
 
   const titleRef = useRef("");
@@ -17,6 +17,7 @@ function Create({ collectionRef }) {
       fixed: false,
     });
     setSubmit(!submit);
+    getDbData();
     alert("Issue Created");
   };
   return (

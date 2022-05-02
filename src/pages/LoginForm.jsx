@@ -54,8 +54,10 @@ function LoginForm() {
     }
   };
   return (
-    <>
-      <h1 className="text-center mt-7">Login</h1>
+    <div className="pb-100">
+      <h1 className="text-center pt-5">Login</h1>
+      {/* add theme switch eventuallyu */}
+      <button className="btn btn-primary">toggle theme</button>
 
       {loginError ? (
         <p className="bg-danger text-white w-100">{loginError}</p>
@@ -102,10 +104,12 @@ function LoginForm() {
         </button>
 
         <aside>
-          <Link to="/register">Don't have an account?</Link>
+          <Link className="text-decoration-none" to="/register">
+            Don't have an account?
+          </Link>
         </aside>
       </form>
-    </>
+    </div>
   );
 }
 

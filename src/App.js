@@ -20,12 +20,13 @@ function App() {
   const [dbData, setDbData] = useState([]);
   const bugColletionRef = collection(db, "bugs");
 
+  const getDbData = async () => {
+    const res = await getDocs(bugColletionRef);
+    setDbData(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    console.log(dbData);
+  };
+
   useEffect(() => {
-    const getDbData = async () => {
-      const res = await getDocs(bugColletionRef);
-      setDbData(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log(dbData);
-    };
     getDbData();
   }, []);
   return (
@@ -43,12 +44,18 @@ function App() {
               <Route path="/profile" exact element={<Profile />} />
               <Route
                 path="/create"
-                element={<Create collectionRef={bugColletionRef} />}
+                element={
+                  <Create
+                    getDbData={getDbData}
+                    collectionRef={bugColletionRef}
+                  />
+                }
               />
               <Route
                 path="/issues"
                 element={
                   <Read
+                    getDbData={getDbData}
                     data={dbData}
                     refresh={refresh}
                     setRefresh={setRefresh}

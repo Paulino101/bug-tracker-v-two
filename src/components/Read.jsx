@@ -3,26 +3,30 @@ import { updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import "./styles.css";
 
-function Read({ data }) {
+function Read({ data, getDbData }) {
   const [count, setCount] = useState(data.length);
 
   const updateFixed = async (id, fixed) => {
     const boolDoc = doc(db, "bugs", id);
     const newBool = { fixed: true };
     await updateDoc(boolDoc, newBool);
-    setCount(count - 1);
-    console.log("updated", id);
+    setCount(data.length);
+    getDbData();
   };
 
   const deleteIssue = async (id) => {
     const boolDoc = doc(db, "bugs", id);
     await deleteDoc(boolDoc);
-    setCount(count - 1);
-    console.log("deleted");
+    setCount(data.length);
+    getDbData();
   };
   return (
     <>
-      <h1 className="text-center mt-7">Issues : {count}</h1>
+      {data.length === 0 ? (
+        <h1 className="text-center mt-7">No issues! yay :)</h1>
+      ) : (
+        <h1 className="text-center mt-7">Issues : {count}</h1>
+      )}
       <div className="mt-5 d-md-flex flex-md-wrap justify-content-md-evenly d-xl-flex justify-content-xl-evenly flex-xl-row ">
         {data.map((d) => (
           <div key={d.id} className="m-3 border rounded p-3 w-md-45 w-xl-30">
