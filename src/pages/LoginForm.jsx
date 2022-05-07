@@ -1,5 +1,8 @@
 import React, { useRef, useState, useContext } from "react";
-import { isAuthContext, loggedInUserDataContext } from "../helpers/Context";
+import {
+  isAuthContext,
+  loggedInUserDataContext,
+} from "../helpers/Context";
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -8,6 +11,7 @@ import {
 import { auth } from "../firebaseConfig";
 import { Link, useNavigate } from "react-router-dom";
 import googleLogo from "../svg/googleLogo.svg";
+
 
 function LoginForm() {
   const provider = new GoogleAuthProvider();
@@ -18,6 +22,7 @@ function LoginForm() {
 
   const emailRef = useRef("");
   const passwordRef = useRef("");
+
   const [loginError, setLoginError] = useState(null);
 
   const handleRedirect = () => {
@@ -54,10 +59,10 @@ function LoginForm() {
     }
   };
   return (
-    <div className="pb-100">
+    <div className="pb-100 m-xl-lr">
       <h1 className="text-center pt-5">Login</h1>
-      {/* add theme switch eventuallyu */}
-      <button className="btn btn-primary">toggle theme</button>
+      {/* add theme switch eventually*/}
+      
 
       {loginError ? (
         <p className="bg-danger text-white w-100">{loginError}</p>
@@ -80,6 +85,7 @@ function LoginForm() {
             Password
           </label>
           <input
+            autoComplete="on"
             ref={passwordRef}
             type="password"
             className="form-control"

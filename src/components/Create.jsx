@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { addDoc } from "firebase/firestore";
+import { auth } from "../firebaseConfig";
 
 function Create({ collectionRef, getDbData }) {
   const [submit, setSubmit] = useState(false);
@@ -15,6 +16,7 @@ function Create({ collectionRef, getDbData }) {
       date: dateRef.current.value,
       description: descRef.current.value,
       fixed: false,
+      madeBy: auth.currentUser.email,
     });
     setSubmit(!submit);
     getDbData();
