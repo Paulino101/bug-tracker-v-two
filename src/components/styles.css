@@ -16,6 +16,9 @@
   .w-md-45 {
     width: 45% !important;
   }
+  .w-md-7 {
+    width: 7% !important;
+  }
 }
 /* xl media queries */
 @media (min-width: 1200px) {
@@ -24,5 +27,8 @@
   }
   .m-xl-lr {
     margin: 0 13rem !important;
+  }
+  .w-xl-5 {
+    width: 5% !important;
   }
 }

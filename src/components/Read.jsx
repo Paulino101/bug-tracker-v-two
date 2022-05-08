@@ -45,7 +45,7 @@ function Read({ data, getDbData }) {
       )}
       <div className="d-flex justify-content-end me-3">
         <button
-          className="  w-15 btn btn-outline-dark"
+          className="  w-15 w-md-7 w-xl-5 btn btn-outline-dark"
           onClick={() => {
             setLoading(true);
             getDbData();
@@ -63,11 +63,11 @@ function Read({ data, getDbData }) {
             <h5 className="text-capitalize fs-6 d-flex justify-content-between w-100">
               <p className="w-75">{d.bugName}</p>
               {d.fixed ? (
-                <span className={`badge ms-2 bg-success h-100 w-25 w-md-15 `}>
+                <span className={`badge ms-2 bg-success h-100 w-25 w-md-15 p-1`}>
                   Solved
                 </span>
               ) : (
-                <span className={`badge ms-2 bg-danger h-100 w-25`}>Issue</span>
+                <span className={`badge ms-2 bg-danger h-100 w-25 w-md-15 p-1`}>Issue</span>
               )}
             </h5>
 
