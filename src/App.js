@@ -16,12 +16,14 @@ import Read from "./components/Read";
 import NavBar from "./components/NavBar";
 import Unauthorized from "./pages/Unauthorized";
 import ProtectedRoute from "./helpers/ProtectedRoute";
+import ThemeToggle from "./components/ThemeToggle";
+import ThemeToggleLogic from "./helpers/ThemeToggleLogic";
 
 function App() {
   const [admin, setAdmin] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState("");
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [theme, setTheme] = useState(true);
 
   const [dbData, setDbData] = useState([]);
   const bugColletionRef = collection(db, "bugs");
@@ -47,8 +49,9 @@ function App() {
       <loggedInUserDataContext.Provider
         value={{ loggedInUser, setLoggedInUser }}
       >
-        <darkThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
+        <darkThemeContext.Provider value={{ theme, setTheme }}>
           <Router>
+            <ThemeToggleLogic />
             {isAuth ? <NavBar /> : null}
             <Routes>
               <Route path="/register" exact element={<RegisterForm />} />

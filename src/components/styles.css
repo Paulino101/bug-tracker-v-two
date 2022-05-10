@@ -1,6 +1,9 @@
 .mt-7 {
   margin-top: 5rem !important;
 }
+.pt-7 {
+  padding-top: 5rem !important;
+}
 .pb-100 {
   padding-bottom: 100% !important;
 }
@@ -8,6 +11,10 @@
   width: 15% !important;
 }
 
+.svgInvert {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
 /* medium breakpoint media queries */
 @media (min-width: 768px) {
   .w-md-15 {
@@ -28,7 +35,14 @@
   .m-xl-lr {
     margin: 0 13rem !important;
   }
+  .p-xl-lr {
+    padding-left: 13rem !important;
+    padding-right: 13rem !important;
+  }
   .w-xl-5 {
     width: 5% !important;
+  }
+  .w.xl-15 {
+    width: 15% !important;
   }
 }

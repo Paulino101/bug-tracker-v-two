@@ -1,5 +1,6 @@
 import React, { useRef, useState, useContext } from "react";
 import {
+  darkThemeContext,
   isAuthContext,
   loggedInUserDataContext,
 } from "../helpers/Context";
@@ -12,13 +13,13 @@ import { auth } from "../firebaseConfig";
 import { Link, useNavigate } from "react-router-dom";
 import googleLogo from "../svg/googleLogo.svg";
 
-
 function LoginForm() {
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
 
   const { isAuth, setIsAuth } = useContext(isAuthContext);
   const { loggedInUser, setLoggedInUser } = useContext(loggedInUserDataContext);
+  const { theme, setTheme } = useContext(darkThemeContext);
 
   const emailRef = useRef("");
   const passwordRef = useRef("");
@@ -59,10 +60,13 @@ function LoginForm() {
     }
   };
   return (
-    <div className="pb-100 m-xl-lr">
+    <div
+      className={`pb-100 p-xl-lr ${
+        theme ? "bg-dark text-white" : "bg-white text-dark"
+      }`}
+    >
       <h1 className="text-center pt-5">Login</h1>
       {/* add theme switch eventually*/}
-      
 
       {loginError ? (
         <p className="bg-danger text-white w-100">{loginError}</p>
@@ -103,7 +107,9 @@ function LoginForm() {
         <div className="text-center font-weight-bold mb-2">or</div>
         <button
           onClick={handleGoogleSignIn}
-          className="w-100 mb-2 btn btn-outline-dark"
+          className={`w-100 mb-2 btn ${
+            theme ? "btn-outline-light" : "btn-outline-dark"
+          }`}
         >
           <img src={googleLogo} alt="google logo" className="me-2" />
           Sign In With Google

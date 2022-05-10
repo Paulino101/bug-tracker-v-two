@@ -1,9 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { addDoc } from "firebase/firestore";
 import { auth } from "../firebaseConfig";
+import { darkThemeContext } from "../helpers/Context";
 
 function Create({ collectionRef, getDbData }) {
   const [submit, setSubmit] = useState(false);
+  const { theme, setTheme } = useContext(darkThemeContext);
 
   const titleRef = useRef("");
   const dateRef = useRef("");
@@ -23,8 +25,12 @@ function Create({ collectionRef, getDbData }) {
     alert("Issue Created");
   };
   return (
-    <>
-      <h1 className="mt-7 text-center">Create New Issue</h1>
+    <section
+      className={`pb-100 ${
+        theme ? "bg-dark text-white" : "bg-white text-dark"
+      }`}
+    >
+      <h1 className="pt-7 text-center">Create New Issue</h1>
       <form className="m-2 m-md-5 m-xl-lr">
         <div className="mb-3">
           <label className="form-label">Title</label>
@@ -55,7 +61,7 @@ function Create({ collectionRef, getDbData }) {
           create
         </button>
       </form>
-    </>
+    </section>
   );
 }
 
