@@ -102,7 +102,7 @@ function NavBar() {
           <div className="d-flex justify-content-center w-md-100">
             <button
               onClick={handleSignOut}
-              className={`btn w-50 mt-3 ms-3 w-992px-90 ${
+              className={`btn mt-3 ms-3 w-992px-80 ${
                 theme ? "btn-light" : "btn-dark"
               }`}
             >

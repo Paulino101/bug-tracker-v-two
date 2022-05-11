@@ -51,6 +51,7 @@ function App() {
             <ThemeToggleLogic />
             {isAuth ? <NavBar /> : null}
             <Routes>
+              {/* PUBLIC ROUTES */}
               <Route path="/register" exact element={<RegisterForm />} />
               <Route path="/" exact element={<LoginForm />} />
               <Route path="*" element={<PathNotFound />} />

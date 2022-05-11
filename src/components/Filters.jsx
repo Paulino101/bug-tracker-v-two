@@ -1,6 +1,11 @@
 import React from "react";
 
-function Filters({ handleFilterAll, handleFilterIssues, handleFilterSolved }) {
+function Filters({
+  handleFilterAll,
+  handleFilterIssues,
+  handleFilterSolved,
+  handleFilterAuthor,
+}) {
   return (
     <>
       <div class="dropdown ms-3 ">
@@ -35,6 +40,13 @@ function Filters({ handleFilterAll, handleFilterIssues, handleFilterSolved }) {
             type="button"
           >
             solved
+          </button>
+          <button
+            onClick={handleFilterAuthor}
+            class="text-capitalize dropdown-item"
+            type="button"
+          >
+            created
           </button>
         </div>
       </div>

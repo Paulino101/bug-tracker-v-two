@@ -56,6 +56,14 @@ function Read({ dbData, getDbData }) {
     setMappableData(solvedFiltered);
   };
 
+  const handleFilterAuthor = () => {
+    setMappableData(dbData);
+    let solvedFiltered = mappableData.filter(
+      (d) => d.madeBy === currentUserEmail
+    );
+    setMappableData(solvedFiltered);
+  };
+
   const handleFilterAll = () => {
     {
       setMappableData(dbData);
@@ -93,6 +101,7 @@ function Read({ dbData, getDbData }) {
         handleFilterAll={handleFilterAll}
         handleFilterIssues={handleFilterIssues}
         handleFilterSolved={handleFilterSolved}
+        handleFilterAuthor={handleFilterAuthor}
       />
 
       <div className="text-end m-3">

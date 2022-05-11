@@ -5,7 +5,6 @@ import ThemeToggle from "./../components/ThemeToggle";
 function ThemeToggleLogic() {
   let location = useLocation();
   let pathName = location.pathname;
-  console.log(pathName);
   return (
     <>
       {pathName === "/" ? (

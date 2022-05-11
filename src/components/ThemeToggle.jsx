@@ -7,6 +7,7 @@ import moonSvg from "../svg/themeToggle/moon.svg";
 function ThemeToggle() {
   let location = useLocation();
   let pathName = location.pathname;
+  console.log(pathName);
 
   const { theme, setTheme } = useContext(darkThemeContext);
   return (
@@ -14,7 +15,9 @@ function ThemeToggle() {
       <div className={theme ? "bg-dark text-end" : "bg-white text-end"}>
         {theme ? (
           <button
-            className="w-15 w-md-10 w-xl-55 w-992px-90 btn"
+            className={`w-20 w-md-10 w-xl-10 btn ${
+              pathName === "/" ? "w-992px-10" : "w-992px-100"
+            }`}
             onClick={() => {
               setTheme(false);
             }}
@@ -23,7 +26,9 @@ function ThemeToggle() {
           </button>
         ) : (
           <button
-            className="w-15 w-md-10 w-xl-55 w-992px-90 btn"
+            className={`w-20 w-md-10 w-xl-10 btn ${
+              pathName === "/" ? "w-992px-10" : "w-992px-100"
+            }`}
             onClick={() => {
               setTheme(true);
             }}
