@@ -24,124 +24,92 @@ function NavBar() {
   return (
     <>
       <nav
-        class={`navbar fixed-top border-bottom ${
+        class={`navbar navbar-expand-lg sticky-top align-center border-bottom ${
           theme
             ? "navbar-dark bg-dark  border-light"
-            : "navbar-light bg-light  border-dark"
-        } `}
+            : "navbar-light bg-white  border-dark"
+        }`}
       >
-        <div class="container-fluid">
-          <a class="navbar-brand">Bugtracker</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="offcanvas offcanvas-end"
-            tabindex="-1"
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-          >
-            <div
-              class={`offcanvas-header ${
-                theme ? "bg-dark text-white" : "bg-white text-dark"
+        <a class="navbar-brand ms-3 " href="#">
+          Bug Tracker
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse m-3 m-md-lr-10"
+          id="navbarNavDropdown"
+        >
+          {isAuth ? (
+            <div className="list-group mt-3">
+              <Link
+                to="/profile"
+                className={`list-group-item list-group-item-action d-flex justify-content-between ${
+                  theme
+                    ? "bg-dark text-white border border-white"
+                    : "bg-white text-dark"
+                }`}
+              >
+                Profile
+                <img
+                  src={userProfile}
+                  className={`ms-3 ${theme ? "svgInvert" : null}`}
+                  alt="user icon"
+                />
+              </Link>
+              <Link
+                to="/create"
+                className={`list-group-item list-group-item-action d-flex justify-content-between ${
+                  theme
+                    ? "bg-dark text-white border border-white"
+                    : "bg-white text-dark"
+                }`}
+                aria-current="true"
+              >
+                Create
+                <img
+                  src={addSvg}
+                  className={`ms-3 ${theme ? "svgInvert" : null}`}
+                  alt="folder add icon"
+                />
+              </Link>
+              <Link
+                to="/issues"
+                className={`list-group-item list-group-item-action d-flex justify-content-between ${
+                  theme
+                    ? "bg-dark text-white border border-white"
+                    : "bg-white text-dark"
+                }`}
+                aria-current="true"
+              >
+                Issues
+                <img
+                  src={warningSvg}
+                  className={`ms-3 ${theme ? "svgInvert" : null}`}
+                  alt="folder warning icon"
+                />
+              </Link>
+            </div>
+          ) : null}
+          <div className="d-flex justify-content-center w-md-100">
+            <button
+              onClick={handleSignOut}
+              className={`btn w-50 mt-3 ms-3 w-992px-90 ${
+                theme ? "btn-light" : "btn-dark"
               }`}
             >
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                Menu
-              </h5>
-              <ThemeToggle />
-              <button
-                type="button"
-                class={`btn-close text-reset`}
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class={`offcanvas-body ${theme ? "bg-dark" : "bg-white"}`}>
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li className="nav-item">
-                  {!isAuth ? (
-                    <Link
-                      to="/"
-                      className="nav-link active"
-                      aria-current="page"
-                    >
-                      Log In
-                    </Link>
-                  ) : null}
-                </li>
-              </ul>
-              {isAuth ? (
-                <div className="list-group">
-                  <Link
-                    to="/profile"
-                    className={`list-group-item list-group-item-action d-flex justify-content-between ${
-                      theme
-                        ? "bg-dark text-white border border-white"
-                        : "bg-white text-dark"
-                    }`}
-                  >
-                    Profile
-                    <img
-                      src={userProfile}
-                      className={`ms-3 ${theme ? "svgInvert" : null}`}
-                      alt="user icon"
-                    />
-                  </Link>
-                  <Link
-                    to="/create"
-                    className={`list-group-item list-group-item-action d-flex justify-content-between ${
-                      theme
-                        ? "bg-dark text-white border border-white"
-                        : "bg-white text-dark"
-                    }`}
-                    aria-current="true"
-                  >
-                    Create New Issue
-                    <img
-                      src={addSvg}
-                      className={`ms-3 ${theme ? "svgInvert" : null}`}
-                      alt="folder add icon"
-                    />
-                  </Link>
-                  <Link
-                    to="/issues"
-                    className={`list-group-item list-group-item-action d-flex justify-content-between ${
-                      theme
-                        ? "bg-dark text-white border border-white"
-                        : "bg-white text-dark"
-                    }`}
-                    aria-current="true"
-                  >
-                    See All Issues
-                    <img
-                      src={warningSvg}
-                      className={`ms-3 ${theme ? "svgInvert" : null}`}
-                      alt="folder warning icon"
-                    />
-                  </Link>
-                </div>
-              ) : null}
-              <form class="d-flex">
-                {isAuth ? (
-                  <button
-                    onClick={handleSignOut}
-                    className={`btn d-flex justify-content-center w-100 mt-3 ${
-                      theme ? "btn-light" : "btn-dark"
-                    }`}
-                  >
-                    Sign Out
-                  </button>
-                ) : null}
-              </form>
-            </div>
+              Sign Out
+            </button>
           </div>
+          <ThemeToggle />
         </div>
       </nav>
     </>

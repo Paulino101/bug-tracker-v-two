@@ -31,15 +31,12 @@ function App() {
   const getDbData = async () => {
     const res = await getDocs(bugColletionRef);
     setDbData(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    console.log(dbData);
   };
 
   useEffect(() => {
     const getDbData = async () => {
       const res = await getDocs(bugColletionRef);
       setDbData(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log(dbData);
-      console.log(auth);
     };
 
     getDbData();
@@ -71,7 +68,7 @@ function App() {
                 />
                 <Route
                   path="/issues"
-                  element={<Read getDbData={getDbData} data={dbData} />}
+                  element={<Read getDbData={getDbData} dbData={dbData} />}
                 />
               </Route>
               <Route path="/unauthorized" element={<Unauthorized />} />
