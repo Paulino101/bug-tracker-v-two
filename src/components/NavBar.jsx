@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { darkThemeContext, isAuthContext } from "../helpers/Context";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
@@ -11,6 +11,14 @@ import ThemeToggle from "./ThemeToggle";
 function NavBar() {
   const { isAuth, setIsAuth } = useContext(isAuthContext);
   const { theme, setTheme } = useContext(darkThemeContext);
+  let location = useLocation();
+  console.log(location.pathname);
+
+  if (location.pathname !== "/") {
+    console.log("youre not on the landing page");
+  } else {
+    console.log("youre on the landing page");
+  }
 
   const handleSignOut = async () => {
     try {

@@ -18,6 +18,7 @@ import Unauthorized from "./pages/Unauthorized";
 import ProtectedRoute from "./helpers/ProtectedRoute";
 import ThemeToggle from "./components/ThemeToggle";
 import ThemeToggleLogic from "./helpers/ThemeToggleLogic";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   const [admin, setAdmin] = useState(false);
@@ -52,8 +53,9 @@ function App() {
             {isAuth ? <NavBar /> : null}
             <Routes>
               {/* PUBLIC ROUTES */}
+              <Route path="/" exact element={<LandingPage />} />
               <Route path="/register" exact element={<RegisterForm />} />
-              <Route path="/" exact element={<LoginForm />} />
+              <Route path="/login" exact element={<LoginForm />} />
               <Route path="*" element={<PathNotFound />} />
               {/* PROTECTED ROUTES */}
               <Route element={<ProtectedRoute />}>

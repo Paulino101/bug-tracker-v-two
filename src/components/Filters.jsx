@@ -8,9 +8,9 @@ function Filters({
 }) {
   return (
     <>
-      <div class="dropdown ms-3 ">
+      <div class="dropdown ms-3">
         <button
-          class="btn btn-secondary dropdown-toggle"
+          class="btn btn-secondary dropdown-toggle "
           type="button"
           id="dropdownMenu2"
           data-toggle="dropdown"

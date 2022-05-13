@@ -7,7 +7,7 @@ function ThemeToggleLogic() {
   let pathName = location.pathname;
   return (
     <>
-      {pathName === "/" ? (
+      {pathName === "/login" ? (
         <ThemeToggle />
       ) : pathName === "/register" ? (
         <ThemeToggle />

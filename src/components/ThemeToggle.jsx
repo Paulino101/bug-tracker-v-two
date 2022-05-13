@@ -7,7 +7,6 @@ import moonSvg from "../svg/themeToggle/moon.svg";
 function ThemeToggle() {
   let location = useLocation();
   let pathName = location.pathname;
-  console.log(pathName);
 
   const { theme, setTheme } = useContext(darkThemeContext);
   return (
