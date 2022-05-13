@@ -10,39 +10,6 @@ function LandingPage() {
   return (
     <>
       <div id="page-top">
-        {/* <!-- Navigation--> */}
-        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-          <div className="container px-5">
-            <a className="navbar-brand" href="#page-top">
-              Bug Tracker
-            </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="navbar-nav ms-auto">
-                <li className="nav-item">
-                  <Link to="/register" className="nav-link" href="#!">
-                    Sign Up
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/login" className="nav-link" href="#!">
-                    Log In
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
         {/* <!-- Header--> */}
         <header className="masthead text-center text-white">
           <div className="masthead-content">
@@ -134,7 +101,6 @@ function LandingPage() {
           </Link>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

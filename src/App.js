@@ -19,6 +19,7 @@ import ProtectedRoute from "./helpers/ProtectedRoute";
 import ThemeToggle from "./components/ThemeToggle";
 import ThemeToggleLogic from "./helpers/ThemeToggleLogic";
 import LandingPage from "./pages/LandingPage";
+import Footer from "./components/Footer";
 
 function App() {
   const [admin, setAdmin] = useState(false);
@@ -49,8 +50,7 @@ function App() {
       >
         <darkThemeContext.Provider value={{ theme, setTheme }}>
           <Router>
-            <ThemeToggleLogic />
-            {isAuth ? <NavBar /> : null}
+            <NavBar />
             <Routes>
               {/* PUBLIC ROUTES */}
               <Route path="/" exact element={<LandingPage />} />
@@ -77,6 +77,7 @@ function App() {
               <Route path="/unauthorized" element={<Unauthorized />} />
               {/* ROLE BASED ROUTES */}
             </Routes>
+            <Footer />
           </Router>
         </darkThemeContext.Provider>
       </loggedInUserDataContext.Provider>

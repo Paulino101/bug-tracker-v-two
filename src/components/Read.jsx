@@ -93,7 +93,7 @@ function Read({ dbData, getDbData }) {
         theme ? "bg-dark text-white" : "bg-white text-dark"
       }`}
     >
-      <h1 className="pt-5 text-center">Issues</h1>
+      <h1 className="pt-7 text-center">Issues</h1>
       <div className="d-flex justify-content-end me-3">
         <Refresh theme={theme} refreshSvg={refreshSvg} getDbData={getDbData} />
       </div>

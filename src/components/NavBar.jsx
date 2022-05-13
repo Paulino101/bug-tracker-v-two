@@ -3,16 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { darkThemeContext, isAuthContext } from "../helpers/Context";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import addSvg from "../svg/folder-add-svgrepo-com.svg";
-import warningSvg from "../svg/folder-warning-svgrepo-com.svg";
-import userProfile from "../svg/user-svgrepo-com.svg";
 import ThemeToggle from "./ThemeToggle";
 
 function NavBar() {
   const { isAuth, setIsAuth } = useContext(isAuthContext);
   const { theme, setTheme } = useContext(darkThemeContext);
   let location = useLocation();
-  console.log(location.pathname);
+  let pathName = location.pathname;
 
   if (location.pathname !== "/") {
     console.log("youre not on the landing page");
@@ -31,95 +28,88 @@ function NavBar() {
   };
   return (
     <>
-      <nav
-        class={`navbar navbar-expand-lg sticky-top align-center border-bottom ${
-          theme
-            ? "navbar-dark bg-dark  border-light"
-            : "navbar-light bg-white  border-dark"
-        }`}
-      >
-        <a class="navbar-brand ms-3 " href="#">
-          Bug Tracker
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse m-3 m-md-lr-10"
-          id="navbarNavDropdown"
-        >
-          {isAuth ? (
-            <div className="list-group mt-3">
-              <Link
-                to="/profile"
-                className={`list-group-item list-group-item-action d-flex justify-content-between ${
-                  theme
-                    ? "bg-dark text-white border border-white"
-                    : "bg-white text-dark"
-                }`}
-              >
-                Profile
-                <img
-                  src={userProfile}
-                  className={`ms-3 ${theme ? "svgInvert" : null}`}
-                  alt="user icon"
-                />
-              </Link>
-              <Link
-                to="/create"
-                className={`list-group-item list-group-item-action d-flex justify-content-between ${
-                  theme
-                    ? "bg-dark text-white border border-white"
-                    : "bg-white text-dark"
-                }`}
-                aria-current="true"
-              >
-                Create
-                <img
-                  src={addSvg}
-                  className={`ms-3 ${theme ? "svgInvert" : null}`}
-                  alt="folder add icon"
-                />
-              </Link>
-              <Link
-                to="/issues"
-                className={`list-group-item list-group-item-action d-flex justify-content-between ${
-                  theme
-                    ? "bg-dark text-white border border-white"
-                    : "bg-white text-dark"
-                }`}
-                aria-current="true"
-              >
-                Issues
-                <img
-                  src={warningSvg}
-                  className={`ms-3 ${theme ? "svgInvert" : null}`}
-                  alt="folder warning icon"
-                />
-              </Link>
-            </div>
-          ) : null}
-          <div className="d-flex justify-content-center w-md-100">
+      {pathName === "/" ? (
+        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+          <div className="container px-5">
+            <a className="navbar-brand" href="#page-top">
+              Landing Page
+            </a>
             <button
-              onClick={handleSignOut}
-              className={`btn mt-3 ms-3 w-992px-80 ${
-                theme ? "btn-light" : "btn-dark"
-              }`}
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarResponsive"
+              aria-controls="navbarResponsive"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
             >
-              Sign Out
+              <span className="navbar-toggler-icon"></span>
             </button>
+            <div className="collapse navbar-collapse" id="navbarResponsive">
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item">
+                  <Link to="/register" className="nav-link" href="#!">
+                    Sign Up
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/login" className="nav-link" href="#!">
+                    Log In
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-          <ThemeToggle />
-        </div>
-      </nav>
+        </nav>
+      ) : !isAuth ? null : (
+        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+          <div className="container px-5">
+            <a className="navbar-brand " href="#page-top">
+              Buggy
+            </a>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarResponsive"
+              aria-controls="navbarResponsive"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarResponsive">
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item">
+                  <Link to="/profile" className="nav-link" href="#!">
+                    Profile
+                  </Link>
+                </li>
+                  <li className="nav-item">
+                    <Link to="/issues" className="nav-link" href="#!">
+                      See Bugs
+                    </Link>
+                  </li>
+                <li className="nav-item">
+                  <Link to="/create" className="nav-link" href="#!">
+                    Create Bug
+                  </Link>
+                  </li>
+                  <li className="nav-item">
+                    <a onClick={handleSignOut} to="/issues" className="nav-link" href="#!">
+                      Sign Out
+                    </a>
+                  </li>
+                  
+                  <li className="nav-item"> 
+                  <ThemeToggle />
+                  </li>
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+      )}
     </>
   );
 }

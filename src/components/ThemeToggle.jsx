@@ -11,12 +11,10 @@ function ThemeToggle() {
   const { theme, setTheme } = useContext(darkThemeContext);
   return (
     <>
-      <div className={theme ? "bg-dark text-end" : "bg-white text-end"}>
+      <div className={`text-start `}>
         {theme ? (
           <button
-            className={`w-20 w-md-10 w-xl-10 btn ${
-              pathName === "/" ? "w-992px-10" : "w-992px-100"
-            }`}
+            className={`w-20 w-sm-10 w-md-10 w-lg-15 w-xl-10 btn`}
             onClick={() => {
               setTheme(false);
             }}
@@ -25,14 +23,12 @@ function ThemeToggle() {
           </button>
         ) : (
           <button
-            className={`w-20 w-md-10 w-xl-10 btn ${
-              pathName === "/" ? "w-992px-10" : "w-992px-100"
-            }`}
+            className={`w-20 w-sm-10 w-md-10 w-lg-15 w-xl-10 btn `}
             onClick={() => {
               setTheme(true);
             }}
           >
-            <img src={moonSvg} alt="" className="w-100" />
+            <img src={moonSvg} alt="" className="w-100 svgInvert" />
           </button>
         )}
       </div>

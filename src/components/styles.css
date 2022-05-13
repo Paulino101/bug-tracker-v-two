@@ -26,6 +26,12 @@
     width: 12% !important;
   }
 }
+/* small breakpoint media queries */
+@media (min-width: 576px) {
+  .w-sm-10 {
+    width: 10% !important;
+  }
+}
 /* medium breakpoint media queries */
 @media (min-width: 768px) {
   .w-md-15 {
@@ -41,8 +47,8 @@
     margin: 0 10rem !important;
   }
 }
-/* 992px media queries */
-@media (min-width: 992px) and (max-width: 1999px) {
+/* large media queries */
+@media (min-width: 992px) {
   .list-group {
     flex-direction: row;
   }
@@ -52,6 +58,9 @@
   }
   .w-md-100 {
     width: 100% !important;
+  }
+  .w-lg-15 {
+    width: 15% !important;
   }
   .w-992px-10 {
     width: 10% !important;
