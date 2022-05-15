@@ -91,7 +91,7 @@ function LandingPage() {
             </div>
           </div>
         </section>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center pb-3">
           <Link
             to="/register"
             className="btn btn-primary btn-xl rounded-pill mt-5"

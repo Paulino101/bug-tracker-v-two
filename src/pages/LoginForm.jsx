@@ -61,7 +61,7 @@ function LoginForm() {
   };
   return (
     <div
-      className={`pb-100 p-xl-lr ${
+      className={`pb-7 px-sm-6 px-md-10 px-lg-10 px-xl-20 ${
         theme ? "bg-dark text-white" : "bg-white text-dark"
       }`}
     >
@@ -71,7 +71,7 @@ function LoginForm() {
       {loginError ? (
         <p className="bg-danger text-white w-100">{loginError}</p>
       ) : null}
-      <form className="m-4 mt-2 m-md-5 mt-md-1 m-xl-lr">
+      <form className="m-4 mt-2 m-md-5 mt-md-1 m-xl-lr ">
         <div className="mb-3">
           <label htmlFor="exampleInputEmail2" className="form-label">
             Email address

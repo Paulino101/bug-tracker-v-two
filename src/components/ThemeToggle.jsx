@@ -4,32 +4,50 @@ import { darkThemeContext } from "../helpers/Context";
 import sunSvg from "../svg/themeToggle/sun.svg";
 import moonSvg from "../svg/themeToggle/moon.svg";
 
-function ThemeToggle() {
+function ThemeToggle({ currentEmail }) {
   let location = useLocation();
   let pathName = location.pathname;
 
   const { theme, setTheme } = useContext(darkThemeContext);
   return (
     <>
-      <div className={`text-start `}>
+      <div
+        className={`text-start d-lg-flex flex-row justify-content-lg-end w-xl-75 `}
+      >
         {theme ? (
-          <button
-            className={`w-20 w-sm-10 w-md-10 w-lg-15 w-xl-10 btn`}
-            onClick={() => {
-              setTheme(false);
-            }}
-          >
-            <img src={sunSvg} alt="" className="w-100 svgInvert" />
-          </button>
+          <>
+            <button
+              className={`w-20 w-sm-10 w-md-10 w-lg-15 w-xl-10 btn`}
+              onClick={() => {
+                setTheme(false);
+              }}
+            >
+              <img src={sunSvg} alt="" className="w-100 svgInvert" />
+            </button>
+            <img
+              src={`https://avatars.dicebear.com/api/identicon/${
+                currentEmail ? currentEmail : "no email"
+              }.svg`}
+              className="display-none d-lg-initial nav-link w-lg-10"
+            />
+          </>
         ) : (
-          <button
-            className={`w-20 w-sm-10 w-md-10 w-lg-15 w-xl-10 btn `}
-            onClick={() => {
-              setTheme(true);
-            }}
-          >
-            <img src={moonSvg} alt="" className="w-100 svgInvert" />
-          </button>
+          <>
+            <button
+              className={`w-20 w-sm-10 w-md-10 w-lg-15 w-xl-10 btn `}
+              onClick={() => {
+                setTheme(true);
+              }}
+            >
+              <img src={moonSvg} alt="" className="w-100 svgInvert" />
+            </button>
+            <img
+              src={`https://avatars.dicebear.com/api/identicon/${
+                currentEmail ? currentEmail : "fdffsassdsaas"
+              }.svg`}
+              className="display-none nav-link w-lg-10"
+            />
+          </>
         )}
       </div>
     </>

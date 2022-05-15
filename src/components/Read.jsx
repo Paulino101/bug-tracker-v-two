@@ -89,9 +89,7 @@ function Read({ dbData, getDbData }) {
   };
   return (
     <section
-      className={`pb-100vh ${
-        theme ? "bg-dark text-white" : "bg-white text-dark"
-      }`}
+      className={`pb-7 ${theme ? "bg-dark text-white" : "bg-white text-dark"}`}
     >
       <h1 className="pt-7 text-center">Issues</h1>
       <div className="d-flex justify-content-end me-3">

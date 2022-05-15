@@ -11,11 +11,7 @@ function NavBar() {
   let location = useLocation();
   let pathName = location.pathname;
 
-  if (location.pathname !== "/") {
-    console.log("youre not on the landing page");
-  } else {
-    console.log("youre on the landing page");
-  }
+  let currentEmail = auth.currentUser.email;
 
   const handleSignOut = async () => {
     try {
@@ -29,10 +25,10 @@ function NavBar() {
   return (
     <>
       {pathName === "/" ? (
-        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top ">
           <div className="container px-5">
             <a className="navbar-brand" href="#page-top">
-              Landing Page
+              Buggy
             </a>
             <button
               className="navbar-toggler"
@@ -85,26 +81,38 @@ function NavBar() {
                     Profile
                   </Link>
                 </li>
-                  <li className="nav-item">
-                    <Link to="/issues" className="nav-link" href="#!">
-                      See Bugs
-                    </Link>
-                  </li>
+                <li className="nav-item">
+                  <Link to="/issues" className="nav-link" href="#!">
+                    See Bugs
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link to="/create" className="nav-link" href="#!">
                     Create Bug
                   </Link>
-                  </li>
-                  <li className="nav-item">
-                    <a onClick={handleSignOut} to="/issues" className="nav-link" href="#!">
-                      Sign Out
-                    </a>
-                  </li>
-                  
-                  <li className="nav-item"> 
-                  <ThemeToggle />
-                  </li>
-                
+                </li>
+                <li className="nav-item d-flex justify-content-between ">
+                  <a
+                    onClick={handleSignOut}
+                    to="/issues"
+                    className="nav-link"
+                    href="#!"
+                  >
+                    Sign Out
+                  </a>
+                  <div className="w-10 w-sm-5 d-lg-none">
+                    <img
+                      src={`https://avatars.dicebear.com/api/identicon/${
+                        currentEmail ? currentEmail : "fdffasffdasdfsdaas"
+                      }.svg`}
+                      className="nav-link w-lg-10"
+                    />
+                  </div>
+                </li>
+
+                <li className="nav-item w-lg-43 w-xl-32">
+                  <ThemeToggle currentEmail={currentEmail} />
+                </li>
               </ul>
             </div>
           </div>

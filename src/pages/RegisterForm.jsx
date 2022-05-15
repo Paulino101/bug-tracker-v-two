@@ -25,12 +25,12 @@ function RegisterForm() {
   };
   return (
     <div
-      className={`p-xl-lr pb-100 ${
+      className={`p-xl-lr pb-7 ${
         theme ? "bg-dark text-white" : "bg-white text-dark"
       }`}
     >
       <h1 className="pt-7 text-center">Register Form</h1>
-      <form className="m-4 mt-2 m-md-5 mt-md-1">
+      <form className="m-4 mt-2 m-md-5 mt-md-1 px-sm-6 px-md-7 px-lg-15 px-xl-10">
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
