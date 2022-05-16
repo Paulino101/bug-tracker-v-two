@@ -26,7 +26,7 @@ function Create({ collectionRef, getDbData }) {
   };
   return (
     <section
-      className={`pb-100 ${
+      className={`pb-21  px-md-9 px-lg-10 ${
         theme ? "bg-dark text-white" : "bg-white text-dark"
       }`}
     >

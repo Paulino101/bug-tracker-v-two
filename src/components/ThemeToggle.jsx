@@ -25,9 +25,7 @@ function ThemeToggle({ currentEmail }) {
               <img src={sunSvg} alt="" className="w-100 svgInvert" />
             </button>
             <img
-              src={`https://avatars.dicebear.com/api/identicon/${
-                currentEmail ? currentEmail : "no email"
-              }.svg`}
+              src={`https://avatars.dicebear.com/api/identicon/${currentEmail}.svg`}
               className="display-none d-lg-initial nav-link w-lg-10"
             />
           </>
@@ -42,10 +40,8 @@ function ThemeToggle({ currentEmail }) {
               <img src={moonSvg} alt="" className="w-100 svgInvert" />
             </button>
             <img
-              src={`https://avatars.dicebear.com/api/identicon/${
-                currentEmail ? currentEmail : "fdffsassdsaas"
-              }.svg`}
-              className="display-none nav-link w-lg-10"
+              src={`https://avatars.dicebear.com/api/identicon/${currentEmail}.svg`}
+              className="display-none d-lg-initial nav-link w-lg-10"
             />
           </>
         )}

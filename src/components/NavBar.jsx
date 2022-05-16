@@ -11,7 +11,7 @@ function NavBar() {
   let location = useLocation();
   let pathName = location.pathname;
 
-  let currentEmail = auth.currentUser.email;
+  let currentEmail = null;
 
   const handleSignOut = async () => {
     try {
@@ -76,11 +76,11 @@ function NavBar() {
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ms-auto">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link to="/profile" className="nav-link" href="#!">
                     Profile
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <Link to="/issues" className="nav-link" href="#!">
                     See Bugs
@@ -103,7 +103,9 @@ function NavBar() {
                   <div className="w-10 w-sm-5 d-lg-none">
                     <img
                       src={`https://avatars.dicebear.com/api/identicon/${
-                        currentEmail ? currentEmail : "fdffasffdasdfsdaas"
+                        currentEmail
+                          ? auth.currentUser.email
+                          : "fdffasffdasdfsdaas"
                       }.svg`}
                       className="nav-link w-lg-10"
                     />

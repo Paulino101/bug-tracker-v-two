@@ -13,6 +13,9 @@
 .pb-7 {
   padding-bottom: 7rem !important;
 }
+.pb-21 {
+  padding-bottom: 21rem !important;
+}
 .w-10 {
   width: 10% !important;
 }
@@ -44,6 +47,9 @@
     width: 10% !important;
   }
   .px-sm-6 {
+    padding: 0rem 5rem 21rem 5rem !important;
+  }
+  .px-sm-5 {
     padding: 1rem 5rem !important;
   }
 }
@@ -62,7 +68,10 @@
     margin: 0 10rem !important;
   }
   .px-md-10 {
-    padding: 1rem 10rem !important;
+    padding: 1rem 10rem 20rem 10rem !important;
+  }
+  .px-md-9 {
+    padding: 0 9rem 13rem 9rem !important;
   }
 }
 /* large media queries */
@@ -90,7 +99,7 @@
     padding: 0 15rem !important;
   }
   .px-lg-10 {
-    padding: 1rem 15rem !important;
+    padding: 1rem 15rem 20rem 15rem !important;
   }
   .w-lg-10 {
     width: 10% !important;
@@ -149,6 +158,6 @@
     padding: 0 10rem !important;
   }
   .px-xl-20 {
-    padding: 1rem 20rem !important;
+    padding: 1rem 20rem 24rem 20rem !important;
   }
 }

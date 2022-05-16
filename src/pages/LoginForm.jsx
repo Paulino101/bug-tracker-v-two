@@ -61,7 +61,7 @@ function LoginForm() {
   };
   return (
     <div
-      className={`pb-7 px-sm-6 px-md-10 px-lg-10 px-xl-20 ${
+      className={`pb-21 px-sm-6 px-md-10 px-lg-10 px-xl-20 ${
         theme ? "bg-dark text-white" : "bg-white text-dark"
       }`}
     >
