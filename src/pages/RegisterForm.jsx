@@ -25,7 +25,7 @@ function RegisterForm() {
   };
   return (
     <div
-      className={`p-xl-lr pb-7 ${
+      className={`p-xl-lr pb-22 ${
         theme ? "bg-dark text-white" : "bg-white text-dark"
       }`}
     >

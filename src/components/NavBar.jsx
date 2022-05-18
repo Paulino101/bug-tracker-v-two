@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { darkThemeContext, isAuthContext } from "../helpers/Context";
 import { signOut } from "firebase/auth";
@@ -8,10 +8,11 @@ import ThemeToggle from "./ThemeToggle";
 function NavBar() {
   const { isAuth, setIsAuth } = useContext(isAuthContext);
   const { theme, setTheme } = useContext(darkThemeContext);
+
+  const [currentEmail, setCurrentEmail] = useState("");
+
   let location = useLocation();
   let pathName = location.pathname;
-
-  let currentEmail = null;
 
   const handleSignOut = async () => {
     try {
@@ -75,7 +76,7 @@ function NavBar() {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="navbar-nav ms-auto">
+              <ul className="navbar-nav ms-auto align-items-lg-center">
                 {/* <li className="nav-item">
                   <Link to="/profile" className="nav-link" href="#!">
                     Profile
@@ -103,9 +104,9 @@ function NavBar() {
                   <div className="w-10 w-sm-5 d-lg-none">
                     <img
                       src={`https://avatars.dicebear.com/api/identicon/${
-                        currentEmail
+                        isAuth
                           ? auth.currentUser.email
-                          : "fdffasffdasdfsdaas"
+                          : console.log("no one signed in")
                       }.svg`}
                       className="nav-link w-lg-10"
                     />
@@ -113,7 +114,7 @@ function NavBar() {
                 </li>
 
                 <li className="nav-item w-lg-43 w-xl-32">
-                  <ThemeToggle currentEmail={currentEmail} />
+                  <ThemeToggle currentEmail={auth.currentUser.email} />
                 </li>
               </ul>
             </div>

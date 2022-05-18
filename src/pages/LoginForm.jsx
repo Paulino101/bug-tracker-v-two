@@ -54,7 +54,6 @@ function LoginForm() {
       setLoggedInUser(result);
       setIsAuth(true);
       handleRedirect();
-      console.log(loggedInUser);
     } catch (error) {
       console.log(error.message);
     }
