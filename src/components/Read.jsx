@@ -1,10 +1,11 @@
 import React, { useState, useContext, useRef } from "react";
 import { updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
+import { darkThemeContext } from "../helpers/Context";
+import { motion } from "framer-motion";
 import refreshSvg from "../svg/refresh-reload-svgrepo-com.svg";
 import editSvg from "../svg/edit-svgrepo-com.svg";
 import "./styles.css";
-import { darkThemeContext } from "../helpers/Context";
 import Filters from "./Filters";
 import Refresh from "./Refresh";
 
@@ -15,6 +16,10 @@ function Read({ dbData, getDbData }) {
   const searchRef = useRef();
 
   const { theme, setTheme } = useContext(darkThemeContext);
+
+  const [issuesData, setIssuesData] = useState(dbData);
+  const [solvedData, setSolvedData] = useState(dbData);
+  const [authorData, setAuthorData] = useState(dbData);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -44,30 +49,25 @@ function Read({ dbData, getDbData }) {
     setEdit(!edit);
   };
 
-  const handleFilterIssues = async () => {
-    setMappableData(dbData);
-    let issuesFiltered = mappableData.filter((d) => d.fixed === false);
+  const handleFilterIssues = () => {
+    let issuesFiltered = issuesData.filter((d) => d.fixed === false);
     setMappableData(issuesFiltered);
   };
 
   const handleFilterSolved = () => {
-    setMappableData(dbData);
-    let solvedFiltered = mappableData.filter((d) => d.fixed === true);
+    let solvedFiltered = solvedData.filter((d) => d.fixed === true);
     setMappableData(solvedFiltered);
   };
 
   const handleFilterAuthor = () => {
-    setMappableData(dbData);
-    let solvedFiltered = mappableData.filter(
+    let solvedFiltered = authorData.filter(
       (d) => d.madeBy === currentUserEmail
     );
     setMappableData(solvedFiltered);
   };
 
   const handleFilterAll = () => {
-    {
-      setMappableData(dbData);
-    }
+    setMappableData(dbData);
   };
 
   const handleSearch = () => {
@@ -114,7 +114,14 @@ function Read({ dbData, getDbData }) {
 
       <div className="mt-5 d-md-flex flex-md-wrap justify-content-md-evenly d-xl-flex justify-content-xl-evenly flex-xl-row ">
         {mappableData.map((d) => (
-          <div key={d.id} className="m-3 border rounded p-3 w-md-45 w-xl-30">
+          <motion.div
+            initial={{ x: -320, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, type: "spring", bounce: 0.25 }}
+            key={d.id}
+            className="m-3 border rounded p-3 w-md-45 w-xl-30"
+          >
             <h5 className="text-capitalize fs-6 d-flex justify-content-between w-100">
               <p className="w-75">{d.bugName}</p>
               {d.fixed ? (
@@ -191,7 +198,7 @@ function Read({ dbData, getDbData }) {
                 ) : null}{" "}
               </>
             ) : null}
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

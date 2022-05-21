@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 function Filters({
   handleFilterAll,
@@ -9,7 +10,8 @@ function Filters({
   return (
     <>
       <div class="dropdown ms-3">
-        <button
+        <motion.button
+          whileTap={{ scale: 0.95 }}
           class="btn btn-secondary dropdown-toggle "
           type="button"
           id="dropdownMenu2"
@@ -18,11 +20,11 @@ function Filters({
           aria-expanded="false"
         >
           Filters
-        </button>
+        </motion.button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <button
             onClick={handleFilterAll}
-            class="text-capitalize dropdown-item"
+            class={`text-capitalize dropdown-item `}
             type="button"
           >
             all

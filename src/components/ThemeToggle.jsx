@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { motion } from "framer-motion";
 import { auth } from "../firebaseConfig";
 import { useLocation } from "react-router-dom";
 import { darkThemeContext } from "../helpers/Context";
@@ -17,14 +18,15 @@ function ThemeToggle({ currentEmail }) {
       >
         {theme ? (
           <>
-            <button
+            <motion.button
+              whileTap={{ rotate: 360 }}
               className={`w-20 w-sm-10 w-md-10 w-lg-15 w-xl-10 p-xl-0 btn`}
               onClick={() => {
                 setTheme(false);
               }}
             >
               <img src={sunSvg} alt="" className="w-100 svgInvert" />
-            </button>
+            </motion.button>
             <img
               src={`https://avatars.dicebear.com/api/identicon/${currentEmail}.svg`}
               className="display-none d-lg-initial nav-link w-lg-10"
@@ -36,14 +38,15 @@ function ThemeToggle({ currentEmail }) {
           </>
         ) : (
           <>
-            <button
+            <motion.button
+              whileTap={{ rotate: 360 }}
               className={`w-20 w-sm-10 w-md-10 w-lg-15 w-xl-10 p-xl-0 btn `}
               onClick={() => {
                 setTheme(true);
               }}
             >
               <img src={moonSvg} alt="" className="w-100 svgInvert" />
-            </button>
+            </motion.button>
             <img
               src={`https://avatars.dicebear.com/api/identicon/${currentEmail}.svg`}
               className="display-none d-lg-initial nav-link w-lg-10"

@@ -3,6 +3,8 @@ import { addDoc } from "firebase/firestore";
 import { auth } from "../firebaseConfig";
 import { darkThemeContext } from "../helpers/Context";
 
+import { motion } from "framer-motion";
+
 function Create({ collectionRef, getDbData }) {
   const [submit, setSubmit] = useState(false);
   const { theme, setTheme } = useContext(darkThemeContext);
@@ -31,19 +33,26 @@ function Create({ collectionRef, getDbData }) {
       }`}
     >
       <h1 className="pt-7 text-center">Create New Issue</h1>
-      <form className="m-2 m-md-5 m-xl-lr">
+      <motion.form
+        initial={{ x: -320, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="m-2 m-md-5 m-xl-lr"
+      >
         <div className="mb-3">
           <label className="form-label">Title</label>
-          <input
+          <motion.input
+            whileHover={{ scale: 1.0125 }}
             ref={titleRef}
             type="text"
             className="form-control"
             placeholder="16 character limit"
-          />
+          ></motion.input>
         </div>
         <div className="mb-3">
           <label className="form-label">Date</label>
-          <input
+          <motion.input
+            whileHover={{ scale: 1.0125 }}
             ref={dateRef}
             type="text"
             className="form-control"
@@ -52,15 +61,22 @@ function Create({ collectionRef, getDbData }) {
         </div>
         <div className="mb-3">
           <label className="form-label">Description</label>
-          <input ref={descRef} type="text" className="form-control" />
+          <motion.input
+            whileHover={{ scale: 1.0125 }}
+            ref={descRef}
+            type="text"
+            className="form-control"
+          />
         </div>
-        <button
+        <motion.button
+          whileTap={{ scale: 1 }}
+          whileHover={{ scale: 1.125 }}
           className="btn btn-primary text-capitalize"
           onClick={handleCreateIssue}
         >
           create
-        </button>
-      </form>
+        </motion.button>
+      </motion.form>
     </section>
   );
 }

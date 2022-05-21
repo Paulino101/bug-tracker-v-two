@@ -1,10 +1,10 @@
 import React from "react";
 import "../startbootstrap-one-page-wonder-gh-pages/css/styles.css";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import bugSvg from "../svg/landingPage/bug-svgrepo-com.svg";
 import authSvg from "../svg/landingPage/authentication.svg";
 import filterPng from "../photos/landingPage/filters.png";
-import Footer from "../components/Footer";
 
 function LandingPage() {
   return (
@@ -27,7 +27,13 @@ function LandingPage() {
         </header>
         {/* <!-- Content section 1--> */}
         <section id="scroll">
-          <div className="container px-5">
+          <motion.div
+            initial={{ x: 320 }}
+            whileInView={{ x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="container px-5"
+          >
             <div className="row gx-5 align-items-center">
               <div className="col-lg-6 order-lg-2">
                 <div className="p-5">
@@ -41,11 +47,17 @@ function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
         {/* <!-- Content section 2--> */}
         <section>
-          <div className="container px-5">
+          <motion.div
+            initial={{ x: -320 }}
+            whileInView={{ x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="container px-5"
+          >
             <div className="row gx-5 align-items-center">
               <div className="col-lg-6">
                 <div className="p-5">
@@ -63,11 +75,17 @@ function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
         {/* <!-- Content section 3--> */}
         <section>
-          <div className="container px-5">
+          <motion.div
+            initial={{ x: 320 }}
+            whileInView={{ x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="container px-5"
+          >
             <div className="row gx-5 align-items-center">
               <div className="col-lg-6 order-lg-2">
                 <div className="p-5">
@@ -89,7 +107,7 @@ function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
         <div className="d-flex justify-content-center pb-3">
           <Link

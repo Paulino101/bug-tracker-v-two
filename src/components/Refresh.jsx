@@ -1,5 +1,7 @@
 import React from "react";
 
+import { motion } from "framer-motion";
+
 function Refresh({ theme, refreshSvg, getDbData }) {
   return (
     <button
@@ -10,10 +12,11 @@ function Refresh({ theme, refreshSvg, getDbData }) {
         getDbData();
       }}
     >
-      <img
+      <motion.img
+        whileTap={{ rotate: 360 }}
         className={`w-100 ${theme ? "svgInvert" : null}`}
         src={refreshSvg}
-      ></img>
+      ></motion.img>
     </button>
   );
 }
