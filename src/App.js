@@ -3,6 +3,7 @@ import {
   isAuthContext,
   loggedInUserDataContext,
   darkThemeContext,
+  collectionContext,
 } from "./helpers/Context";
 import { auth, db } from "./firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
@@ -26,6 +27,7 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState("");
   const [theme, setTheme] = useState(true);
+  const [userSelectedCollection, setUserSelectedCollection] = useState("");
 
   const [dbData, setDbData] = useState([]);
   const bugColletionRef = collection(db, "bugs");
@@ -43,45 +45,49 @@ function App() {
 
     getDbData();
   }, []);
+
   return (
-    <isAuthContext.Provider value={{ isAuth, setIsAuth }}>
-      <loggedInUserDataContext.Provider
-        value={{ loggedInUser, setLoggedInUser }}
-      >
-        <darkThemeContext.Provider value={{ theme, setTheme }}>
-          <Router>
-            <NavBar />
-            <Routes>
-              {/* PUBLIC ROUTES */}
-              <Route path="/" exact element={<LandingPage />} />
-              <Route path="/register" exact element={<RegisterForm />} />
-              <Route path="/login" exact element={<LoginForm />} />
-              <Route path="*" element={<PathNotFound />} />
-              {/* PROTECTED ROUTES */}
-              <Route element={<ProtectedRoute />}>
-                <Route path="/profile" exact element={<Profile />} />
-                <Route
-                  path="/create"
-                  element={
-                    <Create
-                      getDbData={getDbData}
-                      collectionRef={bugColletionRef}
-                    />
-                  }
-                />
-                <Route
-                  path="/issues"
-                  element={<Read getDbData={getDbData} dbData={dbData} />}
-                />
-              </Route>
-              <Route path="/unauthorized" element={<Unauthorized />} />
-              {/* ROLE BASED ROUTES */}
-            </Routes>
-            <Footer />
-          </Router>
-        </darkThemeContext.Provider>
-      </loggedInUserDataContext.Provider>
-    </isAuthContext.Provider>
+    <collectionContext.Provider
+      value={{ userSelectedCollection, setUserSelectedCollection }}
+    >
+      <isAuthContext.Provider value={{ isAuth, setIsAuth }}>
+        <loggedInUserDataContext.Provider
+          value={{ loggedInUser, setLoggedInUser }}
+        >
+          <darkThemeContext.Provider value={{ theme, setTheme }}>
+            <Router>
+              <NavBar />
+              <Routes>
+                {/* PUBLIC ROUTES */}
+                <Route path="/" exact element={<LandingPage />} />
+                <Route path="/register" exact element={<RegisterForm />} />
+                <Route path="/login" exact element={<LoginForm />} />
+                <Route path="*" element={<PathNotFound />} />
+                {/* PROTECTED ROUTES */}
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/profile" exact element={<Profile />} />
+                  <Route
+                    path="/create"
+                    element={
+                      <Create
+                        getDbData={getDbData}
+                        collectionRef={bugColletionRef}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/issues"
+                    element={<Read getDbData={getDbData} dbData={dbData} />}
+                  />
+                </Route>
+                <Route path="/unauthorized" element={<Unauthorized />} />
+              </Routes>
+              <Footer />
+            </Router>
+          </darkThemeContext.Provider>
+        </loggedInUserDataContext.Provider>
+      </isAuthContext.Provider>
+    </collectionContext.Provider>
   );
 }
 

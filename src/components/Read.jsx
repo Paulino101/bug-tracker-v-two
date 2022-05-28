@@ -10,7 +10,6 @@ import Filters from "./Filters";
 import Refresh from "./Refresh";
 
 function Read({ dbData, getDbData }) {
-  const admin = "paulinoiscoool@gmail.com";
   const currentUserEmail = auth.currentUser.email;
 
   const searchRef = useRef();
@@ -68,6 +67,7 @@ function Read({ dbData, getDbData }) {
 
   const handleFilterAll = () => {
     setMappableData(dbData);
+    console.log(dbData);
   };
 
   const handleSearch = () => {
